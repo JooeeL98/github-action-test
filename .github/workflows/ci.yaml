@@ -1,0 +1,22 @@
+name: CI
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: probar tests
+        run: echo "PROBANDO TEST"
+  
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Obtener tag
+        uses: ./.github/actions/action.yaml
+        with:
+          dockerhub_username: "${{secrets.DOCKERHUB_USERNAME}}"
+          app_name: "angular_app"

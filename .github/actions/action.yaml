@@ -1,0 +1,28 @@
+name: "Tag imagen docker"
+description: "Obtener el tag completo de la imagen y devolverlo"
+inputs:
+  app_name:
+    description: "nombre de la imagen"
+    required: true
+
+outputs:
+  tag_completo:
+    description: "tag completo de la imagen"
+    value: ${{steps.obtener_tag.outputs.tag}}
+
+runs:
+  using: "composite"
+  steps:
+    - name: obtener la version
+      shell: bash
+      id: obtener_version
+      run: echo "version=$(jq -r '.version' packajge.json)" >> $GITHUB_OUTPUT
+
+    - name: obtener tag completo
+      shell: bash
+      id: obtener_tag
+      run: echo "tag=${{secrets.DOCKERHUB_USERNAME}}/${{inputs.app_name}}:${{steps.obtener_version.outputs.version}}" >> $GITHUB_OUTPUT
+
+    - name: mostrar tag
+      shell: bash
+      run: echo ${{steps.obtener_tag.outputs.tag}}
