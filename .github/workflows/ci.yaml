@@ -4,7 +4,7 @@ on:
 
     outputs:
       tag_imagen_docker:
-        value: ${{ jobs.ci.outputs.imagen_docker }}
+        value: ${{ jobs.ci.outputs.tag_docker }}
 
 
 jobs:
@@ -16,6 +16,8 @@ jobs:
   
   ci:
     runs-on: ubuntu-latest
+    outputs: 
+      tag_docker: ${{steps.docker2.outputs.tag_docker}}
     steps:
       - name: clonar repositorio
         uses: actions/checkout@v4
@@ -32,7 +34,7 @@ jobs:
       
       - name: Obtener tag para outputs
         id: docker2
-        run: echo "imagen_docker=hola" >> $GITHUB_OUTPUT
+        run: echo "tag_docker=${{steps.obtener_tag.outputs.tag_completo}}" >> $GITHUB_OUTPUT
 
       - name: BUILD and PUSH a dockerhub
         run: | 
