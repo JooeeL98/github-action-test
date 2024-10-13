@@ -1,0 +1,18 @@
+name: CD
+on:
+  workflow_call:
+    inputs:
+      tag_entero:
+        required: true
+        type: string
+    
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: obtener tag completo
+        id: obtener_tag_completo
+        run: echo "tag_completo=${{inputs.tag_entero}}" >> $GITHUB_OUTPUT
+
+      - name: mostrar nombre tag completo
+        run: echo ${{steps.obtener_tag_completo.outputs.tag_completo}}

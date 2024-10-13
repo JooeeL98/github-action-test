@@ -1,6 +1,11 @@
 name: CI
 on:
-  workflow_dispatch:
+  workflow_call:
+
+    outputs:
+      tag_imagen_docker:
+        value: ${{jobs.ci.outputs.tag_docker}}
+
 
 jobs:
   test:
@@ -24,3 +29,11 @@ jobs:
 
       - name: Mostrar tag completo
         run: echo ${{steps.obtener_tag.outputs.tag_completo}}
+      
+      - name: Obtener tag para outputs
+        run: echo "tag_docker=${{steps.obtener_tag.outputs.tag_com}}" >> $GITHUB_OUTPUT
+
+      - name: BUILD and PUSH a dockerhub
+        run: | 
+          echo "BUILD and PUSH A DOCKERHUB..."
+          echo "BUILD and PUSH CON EXITO!!"
