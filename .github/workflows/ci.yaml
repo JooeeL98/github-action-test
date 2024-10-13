@@ -31,6 +31,7 @@ jobs:
         run: echo ${{steps.obtener_tag.outputs.tag_completo}}
       
       - name: Obtener tag para outputs
+        id: docker2
         run: echo "tag_docker=${{steps.obtener_tag.outputs.tag_completo}}" >> $GITHUB_OUTPUT
 
       - name: BUILD and PUSH a dockerhub
