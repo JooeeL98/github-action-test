@@ -1,6 +1,9 @@
 name: "Tag imagen docker"
 description: "Obtener el tag completo de la imagen y devolverlo"
 inputs:
+  dockerhub_username:
+    description: "nombre dockerhub user"
+    required: true
   app_name:
     description: "nombre de la imagen"
     required: true
@@ -21,7 +24,7 @@ runs:
     - name: obtener tag completo
       shell: bash
       id: obtener_tag
-      run: echo "tag=${{secrets.DOCKERHUB_USERNAME}}/${{inputs.app_name}}:${{steps.obtener_version.outputs.version}}" >> $GITHUB_OUTPUT
+      run: echo "tag=${{inputs.dockerhub_username}}/${{inputs.app_name}}:${{steps.obtener_version.outputs.version}}" >> $GITHUB_OUTPUT
 
     - name: mostrar tag
       shell: bash
