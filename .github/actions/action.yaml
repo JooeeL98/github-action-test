@@ -21,6 +21,10 @@ runs:
       id: obtener_version
       run: echo "version=$(jq -r '.version' packajge.json)" >> $GITHUB_OUTPUT
 
+    - name: mostar version
+      shell: bash
+      run: echo ${{steps.obtener_version.outputs.version}}
+
     - name: obtener tag completo
       shell: bash
       id: obtener_tag
