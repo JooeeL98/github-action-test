@@ -10,5 +10,5 @@ jobs:
     needs: continuousIntegration
     uses: ./.github/workflows/cd.yaml
     with:
-      tag_entero: ${{needs.continuousIntegration.outputs.tag_imagen_docker}}
+      tag_entero: "${{needs.continuousIntegration.outputs.tag_imagen_docker}}"
     
