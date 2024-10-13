@@ -17,6 +17,7 @@ jobs:
 
       - name: Obtener tag
         uses: ./.github/actions
-        with:
+        env:
           dockerhub_username: "${{secrets.DOCKERHUB_USERNAME}}"
+        with:
           app_name: "angular_app"
