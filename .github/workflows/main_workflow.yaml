@@ -6,6 +6,12 @@ jobs:
   continuousIntegration:
     uses: ./.github/workflows/ci.yaml
 
+  mostrarTag:
+    needs: continuousIntegration
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{needs.continuousIntegration.outputs.tag_imagen_docker}}
+
   continuousDeployment:
     needs: continuousIntegration
     uses: ./.github/workflows/cd.yaml
