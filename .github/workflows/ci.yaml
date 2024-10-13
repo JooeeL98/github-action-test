@@ -4,6 +4,7 @@ on:
     secrets:
       dockerhub_username:
         required: true
+        
     outputs:
       tag_imagen_docker:
         value: ${{ jobs.ci.outputs.tag_docker }}

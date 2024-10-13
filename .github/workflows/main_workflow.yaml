@@ -6,7 +6,7 @@ jobs:
   continuousIntegration:
     uses: ./.github/workflows/ci.yaml
     secrets:
-      docker_username: ${{secrets.DOCKERHUB_USERNAME}}
+      dockerhub_username: ${{secrets.DOCKERHUB_USERNAME}}
 
   mostrarTag:
     needs: continuousIntegration
