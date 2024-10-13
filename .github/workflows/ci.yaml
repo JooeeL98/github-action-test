@@ -4,7 +4,7 @@ on:
 
     outputs:
       tag_imagen_docker:
-        value: ${{ jobs.ci.outputs.tag_docker }}
+        value: ${{ jobs.ci.outputs.imagen_docker }}
 
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
       
       - name: Obtener tag para outputs
         id: docker2
-        run: echo "tag_docker=hola" >> $GITHUB_OUTPUT
+        run: echo "imagen_docker=hola" >> $GITHUB_OUTPUT
 
       - name: BUILD and PUSH a dockerhub
         run: | 
