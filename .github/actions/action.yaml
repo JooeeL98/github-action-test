@@ -19,7 +19,7 @@ runs:
     - name: obtener la version
       shell: bash
       id: obtener_version
-      run: echo "version=$(jq -r '.version' packajge.json)" >> $GITHUB_OUTPUT
+      run: echo "version=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
 
     - name: mostar version
       shell: bash
